@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Validador de Cartão | Consulta BIN/IIN</title>
+  <meta name="description" content="Validação técnica de cartão com Luhn, bandeira, BIN/IIN, cache e resposta segura." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero card-panel">
+      <div>
+        <span class="eyebrow">Consulta técnica segura</span>
+        <h1>Validador de Cartão com BIN/IIN</h1>
+        <p>
+          Valide formato, Luhn, bandeira provável e metadados de BIN sem armazenar o número completo.
+        </p>
+      </div>
+      <div class="security-badge">POST • Máscara • Cache</div>
+    </section>
+
+    <section class="grid two-columns">
+      <form id="card-form" class="card-panel form-panel" autocomplete="off">
+        <div class="section-title">
+          <span>1</span>
+          <h2>Digite o número do cartão</h2>
+        </div>
+        <label for="card-number">Número do cartão</label>
+        <input
+          id="card-number"
+          name="cardNumber"
+          inputmode="numeric"
+          maxlength="23"
+          placeholder="4111 1111 1111 1111"
+          required
+        />
+        <small>O sistema usa POST e não envia o número por URL.</small>
+        <button id="submit-button" type="submit">Consultar</button>
+      </form>
+
+      <section class="card-panel result-panel" aria-live="polite">
+        <div class="section-title">
+          <span>2</span>
+          <h2>Resultado técnico</h2>
+        </div>
+
+        <div id="state-empty" class="empty-state">
+          Faça uma consulta para ver Luhn, bandeira, BIN, banco, país, tipo e origem.
+        </div>
+
+        <div id="result-grid" class="result-grid hidden">
+          <article class="result-card">
+            <small>Luhn</small>
+            <strong id="res-luhn">-</strong>
+          </article>
+          <article class="result-card">
+            <small>Bandeira</small>
+            <strong id="res-brand">-</strong>
+          </article>
+          <article class="result-card">
+            <small>Banco</small>
+            <strong id="res-bank">-</strong>
+          </article>
+          <article class="result-card">
+            <small>País</small>
+            <strong id="res-country">-</strong>
+          </article>
+          <article class="result-card">
+            <small>Tipo</small>
+            <strong id="res-type">-</strong>
+          </article>
+          <article class="result-card">
+            <small>Origem</small>
+            <strong id="res-source">-</strong>
+          </article>
+        </div>
+
+        <div id="masked-box" class="masked-box hidden">
+          <small>Cartão mascarado</small>
+          <code id="res-masked">-</code>
+        </div>
+
+        <p id="message" class="message"></p>
+      </section>
+    </section>
+
+    <section class="card-panel notice">
+      <h2>Mensagem de segurança</h2>
+      <p>
+        Não salvamos o número completo no front-end. A API foi projetada para registrar apenas BIN, final 4 e dados técnicos mascarados.
+        Esta validação não confirma saldo, titularidade, existência do cartão ou autorização de compra.
+      </p>
+      <a href="admin.html">Abrir painel administrativo</a>
+    </section>
+  </main>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

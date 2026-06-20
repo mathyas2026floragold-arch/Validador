@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: validador-cartao-api
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: CACHE_TTL_DAYS
+        value: 60
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 60000
+      - key: RATE_LIMIT_MAX
+        value: 30
+      - key: BINLIST_ENABLED
+        value: true
+      - key: CUSTOM_BIN_API_ENABLED
+        value: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false

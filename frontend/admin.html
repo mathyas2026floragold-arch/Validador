@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel Admin | Validador de Cartão</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero card-panel">
+      <div>
+        <span class="eyebrow">Área restrita</span>
+        <h1>Painel Administrativo</h1>
+        <p>Métricas, logs sem PAN completo, cache e status dos provedores.</p>
+      </div>
+      <a class="security-badge" href="index.html">Voltar</a>
+    </section>
+
+    <section class="card-panel form-panel">
+      <div class="section-title">
+        <span>🔐</span>
+        <h2>Acesso admin</h2>
+      </div>
+      <label for="admin-token">Token admin</label>
+      <input id="admin-token" type="password" placeholder="Cole o ADMIN_TOKEN configurado no Render" />
+      <button id="load-dashboard">Carregar painel</button>
+      <p id="admin-message" class="message"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <small>Consultas hoje</small>
+          <strong id="metric-today">0</strong>
+        </article>
+        <article class="metric-card">
+          <small>Cache hit</small>
+          <strong id="metric-cache-hit">0%</strong>
+        </article>
+        <article class="metric-card">
+          <small>Tempo médio</small>
+          <strong id="metric-avg">0ms</strong>
+        </article>
+        <article class="metric-card">
+          <small>APIs falhas</small>
+          <strong id="metric-api-fail">0</strong>
+        </article>
+      </div>
+
+      <section class="card-panel table-panel">
+        <div class="section-title">
+          <span>📋</span>
+          <h2>Logs técnicos sem PAN completo</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>BIN</th>
+                <th>Final</th>
+                <th>Bandeira</th>
+                <th>Origem</th>
+                <th>Status</th>
+                <th>Tempo</th>
+              </tr>
+            </thead>
+            <tbody id="logs-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card-panel table-panel">
+        <div class="section-title">
+          <span>🌐</span>
+          <h2>Provedores de BIN/IIN</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Status</th>
+                <th>Prioridade</th>
+                <th>Timeout</th>
+                <th>Falhas</th>
+                <th>Último erro</th>
+              </tr>
+            </thead>
+            <tbody id="providers-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/admin.js"></script>
+</body>
+</html>
